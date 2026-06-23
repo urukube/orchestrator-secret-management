@@ -24,6 +24,13 @@ variable "secretlist" {
   default = {}
 }
 
+variable "secret_values" {
+  description = "Map of logical key → secret value. Injected via TF_VAR_secret_values in CI; never stored in tfvars files."
+  type        = map(string)
+  sensitive   = true
+  default     = {}
+}
+
 variable "tags" {
   description = "Tags applied to every secret"
   type        = map(string)
