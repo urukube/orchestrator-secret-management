@@ -3,8 +3,9 @@ resource "aws_secretsmanager_secret" "this" {
   # checkov:skip=CKV2_AWS_57: Static platform tokens managed by the platform team; rotation Lambda is out of scope for Phase 1
   for_each = var.secretlist
 
-  name        = each.value.name
-  description = each.value.description
+  name                    = each.value.name
+  description             = each.value.description
+  recovery_window_in_days = 0
 
   tags = merge(var.tags, {
     ManagedBy  = "orchestrator-secret-management"
