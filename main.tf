@@ -17,4 +17,8 @@ resource "aws_secretsmanager_secret_version" "this" {
 
   secret_id     = aws_secretsmanager_secret.this[each.key].id
   secret_string = var.secret_values[each.key]
+
+  lifecycle {
+    ignore_changes = [secret_string]
+  }
 }
